@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply antialiased text-gray-100;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Particle animation */
+.particle-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.8) 100%);
+}
+
+.particle-container::before,
+.particle-container::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at center, rgba(99,102,241,0.1) 0%, transparent 50%),
+    radial-gradient(circle at center, rgba(139,92,246,0.1) 0%, transparent 50%);
+  animation: pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  transform: scale(0.8);
+  opacity: 0.5;
+}
+
+.particle-container::after {
+  animation-delay: -4s;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(0.8) translate(0, 0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.2) translate(-5%, -5%);
+    opacity: 0.8;
+  }
+}
+
+/* Improve button and link tap targets on mobile */
+@media (max-width: 640px) {
+  button, a {
+    @apply min-h-[44px] min-w-[44px];
+  }
+}
